@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# No secrets live in this repo — the API key is stored in the browser.
+.env
+.env.*

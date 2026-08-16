@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Random YouTube Video Picker</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+</head>
+<body>
+
+<header class="masthead">
+  <h1>🎲 Random Video</h1>
+  <p class="tagline">Pull a random video from anywhere in a channel's back catalog.</p>
+</header>
+
+<main>
+
+  <!-- ── API key setup ─────────────────────────────────────────────── -->
+  <section id="setup" class="panel" hidden>
+    <h2>One-time setup</h2>
+    <p class="muted">
+      This page talks to the YouTube Data API directly from your browser, so it needs your own
+      free API key. It is stored only in this browser and never leaves it except to call YouTube.
+      <a href="https://github.com/martintechin/youtubeRandom#getting-an-api-key"
+         target="_blank" rel="noopener">How to get one →</a>
+    </p>
+    <form id="key-form" class="row">
+      <input type="password" id="key-input" placeholder="YouTube Data API v3 key"
+             autocomplete="off" spellcheck="false" required>
+      <button type="submit" class="primary">Save key</button>
+    </form>
+  </section>
+
+  <!-- ── Channel picker ────────────────────────────────────────────── -->
+  <section id="picker" class="panel" hidden>
+    <h2>Channel</h2>
+    <form id="channel-form" class="row">
+      <input type="text" id="channel-input" placeholder="@handle, channel URL, or UC… ID"
+             autocomplete="off" spellcheck="false" required>
+      <button type="submit" class="primary">Load</button>
+    </form>
+    <div id="chips" class="chips" hidden></div>
+  </section>
+
+  <!-- ── Status / errors ───────────────────────────────────────────── -->
+  <p id="status" class="status" hidden></p>
+  <div id="error" class="error" hidden></div>
+
+  <!-- ── The roll ──────────────────────────────────────────────────── -->
+  <section id="stage" class="panel" hidden>
+    <div class="stage-head">
+      <div>
+        <h2 id="channel-title">—</h2>
+        <p class="muted" id="catalog-info">—</p>
+      </div>
+      <button type="button" id="refresh-btn" class="ghost" title="Re-fetch the video list from YouTube">Refresh</button>
+    </div>
+
+    <button type="button" id="roll-btn" class="roll">🎲 Random video</button>
+
+    <article id="result" class="result" hidden>
+      <div class="player">
+        <iframe id="player" src="" title="Random video" frameborder="0" allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <h3 id="video-title">—</h3>
+      <p class="muted"><span id="video-date">—</span> · <a id="video-link" href="#" target="_blank" rel="noopener">Watch on YouTube ↗</a></p>
+    </article>
+  </section>
+
+</main>
+
+<footer>
+  <button type="button" id="forget-key" class="link-btn" hidden>Forget API key</button>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
